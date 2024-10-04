@@ -16,12 +16,13 @@ void TestCase1() {
   double sol[3];
   solve_cubic_equ(0, 0, -1, eps, &cnt, sol);
   printf("Test Case 1: Expected 1 root, x = 1\n");
-    printf("Number of roots: %d\n", cnt);
-    for (int i = 0; i < cnt; i++) {
-        printf("Root %d: %.6f\n", i + 1, sol[i]);
-    }
-    assert(cnt == 1 && fabs(sol[0] - 1) < eps);
-    printf("Passed TestCase1\n");
+  printf("Number of roots: %d\n", cnt);
+  for (int i = 0; i < cnt; i++) {
+      printf("Root %d: %.6f\n", i + 1, sol[i]);
+  }
+  assert(cnt == 1);
+  assert(fabs(sol[0] - 1) < eps);
+  printf("Passed TestCase1\n");
 }
 
 void TestCase2() {
@@ -35,7 +36,9 @@ void TestCase2() {
   for (int i = 0; i < cnt; i++) {
     printf("Root %d: %.6f\n", i + 1, sol[i]);
   }
-  assert(cnt == 2 && fabs(sol[0] + 2) < eps && fabs(sol[1] - 1) < eps);
+  assert(cnt == 2);
+  assert(fabs(sol[0] + 2) < eps);
+  assert(fabs(sol[1] - 1) < eps);
   printf("Passed TestCase2\n");
 
 }
@@ -51,7 +54,10 @@ void TestCase3() {
   for (int i = 0; i < cnt; i++) {
     printf("Root %d: %.6f\n", i + 1, sol[i]);
   }
-  assert(cnt == 3 && fabs(sol[0] - 1) < eps && fabs(sol[1] - 2) < eps && fabs(sol[2] - 3) < eps);
+  assert(cnt == 3);
+  assert(fabs(sol[0] - 1) < eps);
+  assert(fabs(sol[1] - 2) < eps);
+  assert(fabs(sol[2] - 3) < eps);
   printf("Passed TestCase3\n");
 }
 
