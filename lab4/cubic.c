@@ -9,6 +9,13 @@ void solve_cubic_equ(double c2, double c1, double c0, double eps, int* cnt, doub
 	
 }
 
+// Compares two double numbers x and y for equality within a specified tolerance eps.
+// Returns 1 if the absolute difference between x and y is less than eps, 0 otherwise.
+int compare_equal(double x, double y, double eps) {
+  if (fabs(x - y) < eps) return 1;
+  else return 0;
+}
+
 void TestCase1() {
   // Test Case 1: x^3 - 1 = 0, only one real root x = 1
   double eps = 1e-6;
@@ -16,12 +23,13 @@ void TestCase1() {
   double sol[3];
   solve_cubic_equ(0, 0, -1, eps, &cnt, sol);
   printf("Test Case 1: Expected 1 root, x = 1\n");
-    printf("Number of roots: %d\n", cnt);
-    for (int i = 0; i < cnt; i++) {
-        printf("Root %d: %.6f\n", i + 1, sol[i]);
-    }
-    assert(cnt == 1 && fabs(sol[0] - 1) < eps);
-    printf("Passed TestCase1\n");
+  printf("Number of roots: %d\n", cnt);
+  for (int i = 0; i < cnt; i++) {
+      printf("Root %d: %.6f\n", i + 1, sol[i]);
+  }
+  assert(cnt == 1);
+  assert(compare_equal(sol[0], 1.0, eps));
+  printf("Passed TestCase1\n");
 }
 
 void TestCase2() {
@@ -35,7 +43,9 @@ void TestCase2() {
   for (int i = 0; i < cnt; i++) {
     printf("Root %d: %.6f\n", i + 1, sol[i]);
   }
-  assert(cnt == 2 && fabs(sol[0] + 2) < eps && fabs(sol[1] - 1) < eps);
+  assert(cnt == 2);
+  assert(compare_equal(sol[0], -2.0, eps));
+  assert(compare_equal(sol[1], 1.0, eps));
   printf("Passed TestCase2\n");
 
 }
@@ -51,7 +61,10 @@ void TestCase3() {
   for (int i = 0; i < cnt; i++) {
     printf("Root %d: %.6f\n", i + 1, sol[i]);
   }
-  assert(cnt == 3 && fabs(sol[0] - 1) < eps && fabs(sol[1] - 2) < eps && fabs(sol[2] - 3) < eps);
+  assert(cnt == 3);
+  assert(compare_equal(sol[0], 1, eps));
+  assert(compare_equal(sol[1], 2, eps));
+  assert(compare_equal(sol[2], 3, eps));
   printf("Passed TestCase3\n");
 }
 
