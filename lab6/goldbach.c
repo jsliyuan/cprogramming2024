@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <assert.h>
+#include <stdbool.h>
 /*
 Goldbach's conjecture states that every even natural
 number greater than 2 is the sum of two prime numbers.
@@ -13,30 +14,46 @@ void sum_of_two_primes(int n, int* prime1, int* prime2) {
 }
 
 
+
+
+bool is_prime(int n) {
+    if (n <= 1) {
+        return false;  
+    }
+    
+    
+    for (int i = 2; i * i <= n; i++) {
+        if (n % i == 0) {
+            return false; 
+        }
+    }
+
+    return true;  
+}
     
 
     
 void TestCase1() {
-  // Test case 1: 10 = 3 + 7
+  // Test case 1: 10 
   int prime1, prime2;
   sum_of_two_primes(10, &prime1, &prime2);
-  assert((prime1 == 3 && prime2 == 7) || (prime1 == 7 && prime2 == 3));
+  assert(is_prime(prime1)&&is_prime(prime2)&&(prime1+prime2 == 10));
   printf("Passed TestCase1\n");
 }
 
 void TestCase2() {
-  // Test case 2: 28 = 11 + 17
+  // Test case 2: 2828 
   int prime1, prime2;
-  sum_of_two_primes(28, &prime1, &prime2);
-  assert((prime1 == 11 && prime2 == 17) || (prime1 == 17 && prime2 == 11));
+  sum_of_two_primes(2828, &prime1, &prime2);
+  assert(is_prime(prime1)&&is_prime(prime2)&&(prime1+prime2 == 2828));
   printf("Passed TestCase2\n");
 }
 
 void TestCase3() {
-  // Test case 3: 56 = 19 + 37
+  // Test case 3: 82828
   int prime1, prime2;
-  sum_of_two_primes(56, &prime1, &prime2);
-  assert((prime1 == 19 && prime2 == 37) || (prime1 == 37 && prime2 == 19));
+  sum_of_two_primes(82828, &prime1, &prime2);
+  assert(is_prime(prime1)&&is_prime(prime2)&&(prime1+prime2 == 82828));
   printf("Passed TestCase3\n");
 }
 
